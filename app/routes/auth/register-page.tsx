@@ -4,6 +4,7 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 
 import placeholder  from "~/assets/images/placeholder.svg"
+import { Link } from "react-router";
 
 const RegisterPage = () => {
   return (
@@ -66,10 +67,10 @@ const RegisterPage = () => {
                 </Button>
               </div>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <a href="#" className="underline underline-offset-4">
-                  Sign up
-                </a>
+                Alreay have an account?{" "}
+                <Link to="/auth/login" className="underline underline-offset-4">
+                  Log in
+                </Link>
               </div>
             </div>
           </form>
