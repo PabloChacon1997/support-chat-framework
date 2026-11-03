@@ -2,10 +2,18 @@ import { LogOut, X } from "lucide-react"
 import {  Outlet } from "react-router"
 
 import { Button } from "~/components/ui/button"
+import { getClients } from "~/fake/fake-data"
 import { ContactInformationCard } from "~/routes/chat/components/contact-information-card/ContactInformationCard"
 import { ContactList } from "~/routes/chat/components/ContactList"
+import type { Route } from "./+types/chat-layout"
 
-const ChatLayout = () => {
+export async function loader() {
+  const clients = await getClients()
+  return { clients };
+}
+
+const ChatLayout = ({ loaderData }: Route.ComponentProps) => {
+  const { clients } = loaderData;
   return (
     <div className="flex h-screen bg-background">
       {/* Sidebar */}
@@ -16,7 +24,7 @@ const ChatLayout = () => {
             <span className="font-semibold">NexTalk</span>
           </div>
         </div>
-        <ContactList />
+        <ContactList clients={clients} />
         <div className="p-4 border-t">
           <Button variant={"ghost"} className="w-full text-center">
             <LogOut className="h-4 w-4 mr-2" />
